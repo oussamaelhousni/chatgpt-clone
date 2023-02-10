@@ -1,6 +1,7 @@
 import bot from "./assets/bot.svg";
 import user from "./assets/user.svg";
 const form = document.querySelector("form");
+const textarea = document.querySelector("textarea");
 const chatContainer = document.querySelector("#chat_container");
 let loadInterval;
 console.log(form);
@@ -76,7 +77,7 @@ const handleSubmit = async (e) => {
     clearInterval(loadInterval);
     messageDiv.innerHTML = "";
     if (response.ok) {
-        const data = await data.json();
+        const data = await response.json();
         const botResponse = data.bot.trim();
         typeText(messageDiv, botResponse);
     } else {
@@ -87,3 +88,8 @@ const handleSubmit = async (e) => {
 };
 
 form.addEventListener("submit", handleSubmit);
+textarea.addEventListener("keyup", (e) => {
+    if (e.key === "Enter") {
+        handleSubmit(e);
+    }
+});

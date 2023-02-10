@@ -1,0 +1,1 @@
+1 - creating new vanilla js environement : npm create vite@latest --template vanilla
